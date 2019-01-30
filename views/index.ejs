@@ -1,0 +1,12 @@
+<% blogs.forEach(function(blog) { %>
+  <div class="col-6 mb-2">
+    <div class="card">
+      <img class="card-img-top" src=<%= blog.image%> alt="Default campsite"/>
+      <div class="card-body">
+        <h4 class="card-title"><%= blog.title %></h4>
+        <p class="card-text"><%= blog.body %></p>
+        <p><%= blog.created %></p>
+      </div>
+    </div>
+  </div>
+<% }) %>
