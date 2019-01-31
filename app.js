@@ -31,6 +31,8 @@ var Blog = mongoose.model('Blog', blogSchema);
 // Blog.create({ title: 'My Dummy Blog', body: 'This is some dummy blog data to work with', image: 'https://images.unsplash.com/photo-1525382455947-f319bc05fb35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2828&q=80'})
 
 // REST Routes
+
+// INDEX
 app.get('/blogs', function(request, response) {
   Blog.find({}, function(error, blogs) {
     if (error) {
