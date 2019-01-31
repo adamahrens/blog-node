@@ -7,7 +7,7 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(parser.urlencoded({ extended: true})); /* Parsing BODY on POST requests */
 app.use(morgan('combined'));  /* HTTP Logging to STDOUT */
-app.use(express.static('public'));
+app.use('/semantic', express.static('semantic'))
 
 mongoose.connect('mongodb://localhost/blog', { useNewUrlParser: true });
 var db = mongoose.connection;
