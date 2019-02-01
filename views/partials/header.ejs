@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/app.css">
     <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -11,4 +12,15 @@
     <title>Node-Blogs</title>
   </head>
   <body>
-    <h1>Header</h1>
+    <div id="navigation-bar" class="ui fixed inverted menu">
+      <div class="ui container">
+        <div class="header item">
+          <i class="icon keyboard"></i>
+          <i class="icon terminal"></i>
+          /  My Blog
+        </div>
+        <a href="/" class="item">Home</a>
+        <a href="/blogs/new" class="item">New Blog</a>
+      </div>
+    </div>
+    <div id="main-content" class="ui container">
