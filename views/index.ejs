@@ -2,12 +2,13 @@
 <h4>Blogs#Index</h4>
 
 <% blogs.forEach(function(blog) { %>
-  <div class="col-6 mb-2">
-    <div class="card">
-      <a href="/blog/<%= blog.id %>">Show Me</a>
+  <div class="blog">
+    <div>
       <img class="ui medium image" src=<%= blog.image%> alt="Default campsite"/>
-      <div class="card-body">
-        <h4 class="card-title"><%= blog.title %></h4>
+      <div class="blog-body">
+        <a href="/blog/<%= blog.id %>">
+          <h4 class="card-title"><%= blog.title %></h4>
+        </a>
         <p class="card-text"><%= blog.body %></p>
         <p><%= blog.created %></p>
       </div>
