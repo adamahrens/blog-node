@@ -4,6 +4,7 @@
 <% blogs.forEach(function(blog) { %>
   <div class="col-6 mb-2">
     <div class="card">
+      <a href="/blog/<%= blog.id %>">Show Me</a>
       <img class="card-img-top" src=<%= blog.image%> alt="Default campsite"/>
       <div class="card-body">
         <h4 class="card-title"><%= blog.title %></h4>

@@ -63,6 +63,19 @@ app.get('/blogs/new', function(request, response) {
   response.render('new');
 });
 
+// SHOW
+app.get('/blog/:id', function(request, response) {
+  var id = request.params.id;
+  Blog.findById(id, function(error, blog) {
+    if (error) {
+      console.log('Erroring showing blog: ' + error);
+      response.redirect('/blogs');
+    } else {
+      response.render('show', { blog: blog});
+    }
+  });
+});
+
 app.get('/', function(request, response){
   response.redirect('/blogs');
 });
