@@ -46,6 +46,23 @@ app.get('/blogs', function(request, response) {
   .sort({ '_id' : -1 });
 });
 
+// CREATE
+app.post('/blogs', function(request, response) {
+  Blog.create(request.body.blog, function(error, blog) {
+    if (error) {
+      console.log('Error saving blog: ' + error);
+      response.render('new');
+    } else {
+      response.redirect('/blogs');
+    }
+  });
+});
+
+// NEW
+app.get('/blogs/new', function(request, response) {
+  response.render('new');
+});
+
 app.get('/', function(request, response){
   response.redirect('/blogs');
 });
