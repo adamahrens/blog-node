@@ -1,13 +1,14 @@
 <% include ./partials/header %>
-<a href="/blogs"><h4>Back</h4></a>
+
 <div class="ui grid">
   <div class="six wide column">
-      <img class="ui large image" src=<%= blog.image%> alt="Default campsite"/>
+      <a href="/blogs"><h4>Back</h4></a>
+      <img class="ui large image" src="<%= blog.image%>" alt="Default campsite"/>
   </div>
   <div class="ten wide column">
     <h4 class="card-title"><%= blog.title %></h4>
     <p class="card-text"><%= blog.body %></p>
-    <p><%= blog.created %></p>
+    <p><%= blog.created.toDateString() %></p>
   </div>
 </div>
 
