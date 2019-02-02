@@ -101,6 +101,19 @@ app.put('/blogs/:id', function(request, response) {
   });
 });
 
+// DELETE
+app.delete('/blogs/:id', function(request, response) {
+  var id = request.params.id;
+  Blog.deleteOne({ _id: id }, function (error) {
+    if (error) {
+      console.log('Erroring Deleting blog. Redirecting... : ' + error);
+      response.redirect('/blogs/' + id);
+    } else {
+      response.redirect('/blogs');
+    }
+  });
+});
+
 // ROOT
 app.get('/', function(request, response){
   response.redirect('/blogs');

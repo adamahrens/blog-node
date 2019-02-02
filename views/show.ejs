@@ -9,7 +9,16 @@
     <h4 class="card-title"><%= blog.title %></h4>
     <p class="card-text"><%= blog.body %></p>
     <p><%= blog.created.toDateString() %></p>
-    <button class="ui inverted primary button"><a href="/blogs/<%= blog.id%>/edit">Edit</a></button>
+    <div class="ui grid">
+      <div class="two wide column">
+        <a href="/blogs/<%= blog.id%>/edit"><button class="ui inverted primary button">Edit</button></a>
+      </div>
+      <div class="two wide column">
+        <form action="/blogs/<%= blog.id %>?_method=DELETE" method="POST">
+          <button class="ui inverted red button" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 
