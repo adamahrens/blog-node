@@ -2,10 +2,12 @@ var express = require('express')
 var mongoose = require('mongoose')
 var parser = require('body-parser');
 var morgan = require('morgan');
+var methodOverride = require('method-override');
 var app = express();
 
 app.set('view engine', 'ejs');
 app.use(parser.urlencoded({ extended: true})); /* Parsing BODY on POST requests */
+app.use(methodOverride('_method')) /* Allow PUT, DELETE form requests to route correctly */
 app.use(morgan('combined'));  /* HTTP Logging to STDOUT */
 app.use('/semantic', express.static('semantic'))
 app.use(express.static('public'))
@@ -27,9 +29,6 @@ var blogSchema = new mongoose.Schema({
 
 // Construct Model
 var Blog = mongoose.model('Blog', blogSchema);
-
-// Dummy data
-// Blog.create({ title: 'My Dummy Blog', body: 'This is some dummy blog data to work with', image: 'https://images.unsplash.com/photo-1525382455947-f319bc05fb35?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2828&q=80'})
 
 // REST Routes
 
@@ -71,11 +70,38 @@ app.get('/blog/:id', function(request, response) {
       console.log('Erroring showing blog: ' + error);
       response.redirect('/blogs');
     } else {
-      response.render('show', { blog: blog});
+      response.render('show', { blog: blog });
     }
   });
 });
 
+// EDIT
+app.get('/blogs/:id/edit', function(request, response) {
+  var id = request.params.id;
+  Blog.findById(id, function(error, blog) {
+    if (error) {
+      console.log('Erroring showing blog: ' + error);
+      response.redirect('/blogs');
+    } else {
+      response.render('edit', { blog: blog });
+    }
+  });
+});
+
+// UPDATE
+app.put('/blogs/:id', function(request, response) {
+  var id = request.params.id;
+  Blog.findByIdAndUpdate(id, request.body.blog, function (error, blog) {
+    if (error) {
+      console.log('Erroring Updating blog. Redirecting... : ' + error);
+      response.redirect('/blogs/' + id + '/edit');
+    } else {
+      response.redirect('/blog/' + id)
+    }
+  });
+});
+
+// ROOT
 app.get('/', function(request, response){
   response.redirect('/blogs');
 });
