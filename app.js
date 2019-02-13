@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var parser = require('body-parser');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
+var Blog = require('./models/blog');
 var app = express();
 
 app.set('view engine', 'ejs');
@@ -18,17 +19,6 @@ db.on('error', console.error.bind(console, 'connection to database error:'));
 db.once('open', function() {
   console.log('connection to database successful');
 });
-
-// Schema
-var blogSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  body: String,
-  created: { type: Date, default: Date.now }
-});
-
-// Construct Model
-var Blog = mongoose.model('Blog', blogSchema);
 
 // REST Routes
 
